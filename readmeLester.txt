@@ -5,6 +5,62 @@ Cloned from: https://github.com/patrickloeber/python-github-action-template
 2. from VSCode clone the repo from devopsjourney1 to put it on local machine
     git clone https://github.com/patrickloeber/python-github-action-template.git
 3. from VSCode make any changes you want to your repo, explore the yaml file in the .github/workflows folder
+    Lets create a virtual environment for the project
+    //from terminal run:
+        python -m venv venv
+    //from terminal run:
+        venv\Scripts\activate.bat
+    // to deactivate the environment 
+        deactivate
+
+About virtual environments: 
+
+https://python.land/virtual-environments/virtualenv#Python_venv_activation
+
+https://stackoverflow.com/questions/31684375/automatically-create-file-requirements-txt
+
+    // If you are creating this app from scratch you can create the main.py file
+    
+    // then you can use the pip freeze command puts all dependencies in your virtual environment
+
+    pip3 freeze > requirements.txt
+    pip3 install -r requirements.txt
+    
+
+    //If you want to generate a minimal requirements.txt that only lists the dependencies you need, then use the pipreqs package
+    
+    //First from the terminal take a look at what you have in your virtual environment
+    
+    pip3 list 
+    python --version
+
+    // Install pipreqs
+    pip3 install pipreqs
+
+    pipreqs ./   //this will create a minimal requirements.txt file from the imports of your python files
+
+    // This is the syntax for using pipreqs
+    pipreqs [path to folder]
+    e.g. pipreqs .
+     pipreqs . --force --ignore=tests (Overwrites exisiting requirements.txt, ignores the tests directory)
+
+    # Run in current directory
+    python3 -m  pipreqs.pipreqs .
+
+// problems with not finding the module check its location
+    pip show packagename
+example: pip show requests
+
+Note the dependencies that I installed were getting added to the global site-packages folder instead of the one inside the venv, so the code running inside this env was not able to access those dependencies.
+
+To solve this problem, just remove the venv folder and recreate it again, like so:
+$ deactivate
+$ rm -rf venv
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+
+
 4. initialize the git repo, stage the files and do a first commit (open terminal and run the following commands)
     git init
     git add .
@@ -79,6 +135,15 @@ GitHub Docs: https://docs.github.com/en/actions
 GitHub Guides: https://docs.github.com/en/actions/guides
 GitHub Actions Repo: https://github.com/actions
 GitHub Azure Actions Repo: https://github.com/Azure/actions
+
+Run GitHub actions to automate a python script on a chron
+Schedule Python Scripts with GitHub Actions FOR FREE | Python Automation
+Patrick Loeber
+
+https://www.youtube.com/watch?v=PaGp7Vi5gfM&t=9s
+
+https://github.com/patrickloeber/python-github-action-template.git
+
 
 UDEMY:  Highly recommended
 
