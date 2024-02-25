@@ -1,2 +1,3 @@
 some new feature
 adding some text
+added a third feature
